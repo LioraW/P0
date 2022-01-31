@@ -5,35 +5,33 @@
 
 using namespace std;
 
-int main()
+int main(int argc, char **argv)
 {
-
-	const int ARRAY_SIZE = 5;
-	int grades[ARRAY_SIZE] = {1,2,3,4,5};
-	int count = 0;
 	fstream inputfile;
 
-	inputfile.open("file.sp2022");
+    cout << argv[0] << " " << argv[1] << endl;
 
+    if (argc > 1) {
+        inputfile.open(argv[1]);
 
-	// reading the file into the array
-	//while (count < ARRAY_SIZE && inputfile >> grades[count]) 
-	//	count++;
+        if (inputfile.is_open()) {
+            string line;
 
-    if (inputfile.is_open()) {
-        string line;
+            cout << "File opening successful" << endl;
+            while (inputfile >> line) {
+                cout << line << endl;
+            }
+        } else {
+            cerr << "Unable to open file: " << argv[1] << endl;
+            return -1;
+        }   
 
-        cout << "File opening successfull!!" << endl;
-        while (getline(inputfile, line)) { //while ( inputfile >> line) {
-            std::cout << "Line 1: " << line << std::endl;
-        }
+        inputfile.close();
+    
     } else {
-        std::cerr << "Unable to open file:  file.sp2022" << std::endl;
-        return -1;
-    }   
+        cout << "No file given" << endl;
+    }
 
-	inputfile.close();
-    std::cout << "hi " << std::endl;
     // for (int i = 0; i < ARRAY_SIZE; i++){
     //     cout << grades[i] << endl;
     // }
