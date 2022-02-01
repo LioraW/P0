@@ -8,8 +8,9 @@ using namespace std;
 int main(int argc, char **argv)
 {
 	fstream inputfile;
-
-    cout << argv[0] << " " << argv[1] << endl;
+    int ARRAY_SIZE = 7;
+    string arr[ARRAY_SIZE] = {};
+    int count = 0;
 
     if (argc > 1) {
         inputfile.open(argv[1]);
@@ -18,8 +19,8 @@ int main(int argc, char **argv)
             string line;
 
             cout << "File opening successful" << endl;
-            while (inputfile >> line) {
-                cout << line << endl;
+            while (count < ARRAY_SIZE && inputfile >> arr[count]) {
+                count++;
             }
         } else {
             cerr << "Unable to open file: " << argv[1] << endl;
@@ -29,14 +30,22 @@ int main(int argc, char **argv)
         inputfile.close();
     
     } else {
-        cout << "No file given" << endl;
+        cout << "No file given. Please type in your text: " << endl;
+        string text;
+
+        while (count < ARRAY_SIZE && cin >> text) {
+            if (text != "EOF") {
+                arr[count] = text;
+                count ++;
+            } else {
+                break;
+            }
+        }
     }
 
-    // for (int i = 0; i < ARRAY_SIZE; i++){
-    //     cout << grades[i] << endl;
-    // }
-	//print all the scores
-	// for (int index : grades)
-	// 	cout << index << endl;
+    cout << endl << "Here are the words you wrote: " << endl;
+    for (string word: arr)
+        cout << word << endl;
 
+    return 0;
 }
