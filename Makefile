@@ -5,7 +5,7 @@ CPPFLAGS = -g #$(shell root-config --cflags)
 #LDFLAGS=-g $(shell root-config --ldflags)
 #LDLIBS=$(shell root-config --libs)
 
-SRCS = main.cpp
+SRCS = main.cpp tree.cpp tree.h node.h
 OBJS = $(subst .cc,.o,$(SRCS))
 
 all: main

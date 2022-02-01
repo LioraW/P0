@@ -2,7 +2,7 @@
 #include <fstream>
 #include <iomanip>
 #include <string>
-
+#include "tree.h"
 using namespace std;
 
 int main(int argc, char **argv)
@@ -11,24 +11,12 @@ int main(int argc, char **argv)
     int ARRAY_SIZE = 7;
     string arr[ARRAY_SIZE] = {};
     int count = 0;
+    Tree tree;
 
     if (argc > 1) {
-        inputfile.open(argv[1]);
+        tree.buildTree(argv[1]);
+        tree.displayInOrder();
 
-        if (inputfile.is_open()) {
-            string line;
-
-            cout << "File opening successful" << endl;
-            while (count < ARRAY_SIZE && inputfile >> arr[count]) {
-                count++;
-            }
-        } else {
-            cerr << "Unable to open file: " << argv[1] << endl;
-            return -1;
-        }   
-
-        inputfile.close();
-    
     } else {
         cout << "No file given. Please type in your text: " << endl;
         string text;
@@ -43,9 +31,9 @@ int main(int argc, char **argv)
         }
     }
 
-    cout << endl << "Here are the words you wrote: " << endl;
-    for (string word: arr)
-        cout << word << endl;
+    // cout << endl << "Here are the words you wrote: " << endl;
+    // for (string word: arr)
+    //     cout << word << endl;
 
     return 0;
 }
