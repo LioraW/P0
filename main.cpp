@@ -5,35 +5,45 @@
 #include "tree.h"
 using namespace std;
 
+string validateFileName(string fileName);
+
 int main(int argc, char **argv)
 {
-	fstream inputfile;
-    int ARRAY_SIZE = 7;
-    string arr[ARRAY_SIZE] = {};
-    int count = 0;
+	string fileName;
     Tree tree;
 
-    if (argc > 1) {
-        tree.buildTree(argv[1]);
-        tree.displayInOrder();
+    if (argc == 1) {
 
-    } else {
+        fileName = "tempfile.sp2022";
+        string text = "";
+        
+        ofstream inputfile(fileName);
+        
+
         cout << "No file given. Please type in your text: " << endl;
-        string text;
-
-        while (count < ARRAY_SIZE && cin >> text) {
+        
+        while (cin >> text) {
             if (text != "EOF") {
-                arr[count] = text;
-                count ++;
+                
+                inputfile << text << endl; //process word => put it into file
+            
             } else {
                 break;
             }
         }
-    }
 
-    // cout << endl << "Here are the words you wrote: " << endl;
-    // for (string word: arr)
-    //     cout << word << endl;
+        inputfile.close();
+
+    } else {
+        fileName = validateFileName(argv[1]);
+    }
+        tree.buildTree(fileName);
+        tree.displayInOrder();
 
     return 0;
+}
+
+//TODO
+string validateFileName(string fileName) {
+    return fileName;
 }
