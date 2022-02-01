@@ -60,28 +60,43 @@ using namespace std;
 		return nodePtr; //if the node was not found nodePtr would return as a nullptr
 	}
 
-	void Tree::displayInOrder(Node *nodePtr) const					//display the tree's nodes in order
-	{
-		if (nodePtr)
-		{
-			displayInOrder(nodePtr->left);
+	void Tree::printInorder(Node *nodePtr) const	{
+		//display the tree's nodes in order
+		if (nodePtr) {
+			printInorder(nodePtr->left);
 			 cout << nodePtr->str << endl;
-            displayInOrder(nodePtr->middle);
-			displayInOrder(nodePtr->right);
+            printInorder(nodePtr->middle);
+			printInorder(nodePtr->right);
+		}
+	}
+
+    void Tree::printPreorder(Node *nodePtr) const	{
+		//display the tree's nodes in pre order
+		if (nodePtr) {
+            cout << nodePtr->str << endl;
+			printPreorder(nodePtr->left); 
+            printPreorder(nodePtr->middle);
+			printPreorder(nodePtr->right);
+		}
+	}
+
+    void Tree::printPostorder(Node *nodePtr) const	{
+		//display the tree's nodes in post order
+		if (nodePtr) {
+			printPostorder(nodePtr->left); 
+            printPostorder(nodePtr->middle);
+			printPostorder(nodePtr->right);
+            cout << nodePtr->str << endl;
 		}
 	}
 
 //PUBLIC
-	Tree::Tree()											//constructor
-		{ root = nullptr; }
-
-	Tree::~Tree()										//destructor
-	{ destroySubTree(root);}
-
-    
-
-	void Tree::insertNewNode(string letters)								//create a new node and insert it
-	{
+	Tree::Tree()	{ root = nullptr; }				//constructor
+		
+	Tree::~Tree()	{ destroySubTree(root);}		//destructor
+	
+	void Tree::insertNewNode(string letters) {		//create a new node and insert it
+	
 		Node *newNode = nullptr;
 
 		//Create a new node
@@ -95,12 +110,12 @@ using namespace std;
     
     void Tree::buildTree(string fileName) {
         fstream file;
+        string word;
+        
         file.open(fileName);
 
         if (file.is_open()) {
-            string word;
-
-            cout << "File opening successful" << endl;
+            
             while (file >> word) {
                 insertNewNode(word);
             }
@@ -113,6 +128,10 @@ using namespace std;
     
     }
 
-	void Tree::displayInOrder() const										//display the tree's nodes in order
-		{ displayInOrder(root); }
+	void Tree::printInorder() const	    { printInorder(root); }
+	void Tree::printPreorder() const	{ printPreorder(root); } 
+	void Tree::printPostorder() const	{ printPostorder(root); }		
+
+
+		
 
