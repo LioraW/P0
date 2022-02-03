@@ -1,7 +1,7 @@
 CC=gcc
 CXX=g++
 RM=rm -f
-CPPFLAGS = -g #$(shell root-config --cflags)
+CPPFLAGS = -g -std=c++11 #$(shell root-config --cflags)
 #LDFLAGS=-g $(shell root-config --ldflags)
 #LDLIBS=$(shell root-config --libs)
 
@@ -19,4 +19,4 @@ clean:
 	$(RM) $(OBJS)
 
 distclean: clean
-	$(RM) tool
+	$(RM) main

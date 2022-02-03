@@ -9,13 +9,12 @@ string validateFileName(string fileName);
 
 int main(int argc, char **argv) {
 	string fileName;
-    Tree tree;
 
     if (argc <= 1) {
         cout << "No file given. Please type in your text: " << endl;
         
         // open a temp file 
-        fileName = "tempfile.sp2022";
+        fileName = "output";
         ofstream inputfile(fileName);
         string text = "";
 
@@ -29,14 +28,10 @@ int main(int argc, char **argv) {
     } else {
         fileName = validateFileName(argv[1]);
     }
+        Tree tree(fileName);
         tree.buildTree(fileName);
-        cout << "Words in order:" << endl << endl;
         tree.printInorder();
-
-        cout << endl << "Words pre order:" << endl;
         tree.printPreorder();
-
-        cout << endl << "Words in Post order" << endl;
         tree.printPostorder();
 
     return 0;
