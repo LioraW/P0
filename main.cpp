@@ -1,8 +1,10 @@
 #include <iostream>
 #include <fstream>
 #include <iomanip>
+#include <regex>
 #include <string>
 #include "tree.h"
+
 using namespace std;
 
 string validateFileName(string fileName);
@@ -20,7 +22,7 @@ int main(int argc, char **argv) {
 
         //read keyboard input into temp file
         while (cin >> text && text != "EOF") {
-                inputfile << text << endl;
+            inputfile << text << endl;
         }
 
         inputfile.close();
@@ -28,16 +30,27 @@ int main(int argc, char **argv) {
     } else {
         fileName = validateFileName(argv[1]);
     }
+
+    if (fileName != "") {
         Tree tree(fileName);
-        tree.buildTree(fileName);
+        tree.buildTree();
         tree.printInorder();
         tree.printPreorder();
         tree.printPostorder();
 
+    } else {
+        cerr << "Bad file name!" << endl;
+    }
+    
     return 0;
 }
 
-//TODO
 string validateFileName(string fileName) {
-    return fileName;
+    regex e("^.*.(sp2022)$");
+    if(regex_match(fileName, e)) {
+        return fileName;
+    } else {
+        return "";
+    }
+    
 }
