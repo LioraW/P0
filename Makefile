@@ -1,9 +1,7 @@
 CC=gcc
 CXX=g++
 RM=rm -f
-CPPFLAGS = -g -std=c++11 #$(shell root-config --cflags)
-#LDFLAGS=-g $(shell root-config --ldflags)
-#LDLIBS=$(shell root-config --libs)
+CPPFLAGS = -g -std=c++11
 
 SRCS = main.cpp tree.cpp tree.h node.h
 OBJS = $(subst .cc,.o,$(SRCS))

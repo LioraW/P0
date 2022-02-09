@@ -7,7 +7,7 @@ using namespace std;
 
 struct Node
 	{
-		string str;
+		string str;		//value at node
 		Node *left;		//pointer to left child node
         Node *middle;   //pointer to middle child node
 		Node *right;	//pointer to right child node

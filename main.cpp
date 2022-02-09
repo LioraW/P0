@@ -13,7 +13,6 @@ int main(int argc, char **argv) {
 	string fileName;
 
     if (argc <= 1) {
-        cout << "No file given. Please type in your text: " << endl;
         
         // open a temp file 
         fileName = "output";
@@ -46,11 +45,11 @@ int main(int argc, char **argv) {
 }
 
 string validateFileName(string fileName) {
-    regex e("^.*.(sp2022)$");
+    regex e("^.+/.(sp2022)$"); //needs at least one . before file extension... +?? 
+
     if(regex_match(fileName, e)) {
-        return fileName;
+        return fileName; // return just the file name, not the extension 
     } else {
         return "";
     }
-    
 }
