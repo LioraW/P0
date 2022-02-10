@@ -58,7 +58,7 @@ void Tree::destroySubTree(Node *nodePtr) {
 void Tree::processNode(string fileType, string word, int level) const {
 	
 	// open a temp file 
-	ofstream file(fileName + "." + fileType, ios::app);
+	ofstream file(outputFileName + "." + fileType, ios::app);
 
 	//indent 2*level
 	int numSpaces = level * 2;
@@ -107,7 +107,8 @@ void Tree::printPostorder(Node *nodePtr, int level) const {
 //constructor
 Tree::Tree(string file) {
 	 root = nullptr;
-	 fileName = file;
+	 inputFileName = file + ".sp2022";
+	 outputFileName = file;
 }				
 
 //destructor	
@@ -120,7 +121,7 @@ void Tree::buildTree() {
 	fstream file;
 	string word;
 	
-	file.open(fileName);
+	file.open(inputFileName);
 
 	if (file.is_open()) {
 		
@@ -129,7 +130,7 @@ void Tree::buildTree() {
 		}
 
 	} else {
-		cerr << "Unable to open file: " << fileName << endl;
+		cerr << "Unable to open file: " << inputFileName << endl;
 	}   
 
 	file.close();

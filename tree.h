@@ -8,7 +8,8 @@ class Tree
 {
 private:
 	Node *root;			//pointer to root node
-	string fileName;	//file name for output files
+	string inputFileName;	//file name to get input from
+	string outputFileName;	//file name for output files
     
     bool wordIsGreater(string word1, string word2); //check if one word's last letter is lexographically greater than the other
     bool wordIsSame(string word1, string word2);    //check if two words' last letters are the same

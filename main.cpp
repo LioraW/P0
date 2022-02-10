@@ -37,19 +37,23 @@ int main(int argc, char **argv) {
         tree.printPreorder();
         tree.printPostorder();
 
-    } else {
-        cerr << "Bad file name!" << endl;
     }
     
     return 0;
 }
 
 string validateFileName(string fileName) {
-    regex e("^.+/.(sp2022)$"); //needs at least one . before file extension... +?? 
+    smatch matches;
 
-    if(regex_match(fileName, e)) {
-        return fileName; // return just the file name, not the extension 
+    regex e("^([a-zA-Z0-9_]+).+(sp2022)$");
+    
+    if(regex_match(fileName, matches, e)) {
+
+        return matches[1]; // return just the file name, not the extension 
+    
     } else {
+        
+        cerr << "Bad file name:" << fileName <<  endl;
         return "";
     }
 }
