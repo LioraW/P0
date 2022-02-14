@@ -16,7 +16,7 @@ int main(int argc, char **argv) {
         
         // open a temp file 
         fileName = "output";
-        ofstream inputfile(fileName);
+        ofstream inputfile(fileName + ".sp2022", ios::app);
         string text = "";
 
         //read keyboard input into temp file
@@ -45,14 +45,13 @@ int main(int argc, char **argv) {
 string validateFileName(string fileName) {
     smatch matches;
 
-    regex e("^([a-zA-Z0-9_]+).+(sp2022)$");
+    regex e("^([a-zA-Z0-9_]+)(\\.sp2022)?$");
     
     if(regex_match(fileName, matches, e)) {
-
+        
         return matches[1]; // return just the file name, not the extension 
     
     } else {
-        
         cerr << "Bad file name:" << fileName <<  endl;
         return "";
     }
