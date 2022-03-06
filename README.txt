@@ -1,8 +1,6 @@
-P0 by Liora Wachsstock
+Simple Lexigraphical Parse Tree
 
-CS 4280 Program Translation
-
-Use the 'make' command to compile the project. 
+Use the make command to compile.
 
 The project can be invoked using
      ./main (and you will have to type in the words followed by "EOF)
